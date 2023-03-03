@@ -65,7 +65,40 @@ export const GamePage = () => {
 
     <Box border="1px solid green" h={"90vh"} width="20%">
         <Text>Scores</Text>
-
+        <TableContainer>
+  <Table variant='striped' colorScheme='gray'>
+    <Thead>
+      <Tr>
+        <Th textAlign="center">Player</Th>
+        <Th textAlign="center">Score</Th>
+      </Tr>
+    </Thead>
+        {user2>user1?
+            <Tbody>
+              <Tr>
+                <Td textAlign="center">P1</Td>
+                <Td textAlign="center">{12-user1}</Td>
+              </Tr>
+              <Tr>
+                <Td textAlign="center">P2</Td>
+                <Td textAlign="center">{12-user2}</Td>
+              </Tr>
+            </Tbody>
+        :
+            <Tbody>
+              <Tr>
+                <Td textAlign="center">P2</Td>
+                <Td textAlign="center">{12-user2}</Td>
+              </Tr>
+              <Tr>
+                <Td textAlign="center">P1</Td>
+                <Td textAlign="center">{12-user1}</Td>
+              </Tr>
+            </Tbody>
+      }
+    
+  </Table>
+</TableContainer>
     </Box>
 </Flex>
 
