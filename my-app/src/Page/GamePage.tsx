@@ -14,6 +14,7 @@ import {
   Thead,
   Tr,
   Button,
+  useToast,
 } from "@chakra-ui/react";
 import { GiHighGrass } from "react-icons/gi";
 import { BsDice1, BsDice2, BsDice3, BsDice4, BsDice5, BsDice6 } from "react-icons/bs";
@@ -26,13 +27,46 @@ export const GamePage = () => {
   const [diceValue, setDiceValue] = React.useState<number>(0);
   const [rotate, setRotate] = React.useState<boolean>(false);
   const [changeUser, setChangeUser] = React.useState<boolean>(false);
-  const userScore=(val:number):void=>{
-    console.log('changeUser user2:', changeUser)
-    if(!changeUser){
-      setUser2((prev:number)=> prev-val)
+
+  const toast = useToast()
+
+  const userScore=(val:number)=>{
+    if(changeUser){
+      console.log("user1", user1)
+      if(user1<diceValue){
+        console.log("Value is less in user1")
+      }else{
+        setUser1((prev:number)=> prev-val)
+      }
+      console.log("after change user1", user1)
     }else{
-      setUser1((prev:number)=> prev-val)
+      console.log("user2", user2)
+      if(user2<diceValue){
+        console.log("Value is less in user2")
+      }else{
+        setUser2((prev:number)=> prev-val)
+      }
+      console.log("after change user2", user2)
     }
+
+
+    console.log("changeUser observed:",changeUser)
+  }
+  if(user1==0){
+    // console.log("winner user1", "user1", user1)
+    toast({
+      title: `User 1 has won`,
+      position: 'top',
+      isClosable: true,
+    })
+  }
+  if(user2==0){
+    // console.log("winner user2", "user2", user2)
+    toast({
+      title: `User 2 has won`,
+      position: 'top',
+      isClosable: true,
+    })
   }
   const diceValueGenerator=()=>{
     setDiceValue(Math.ceil(Math.random() * 6));
@@ -41,7 +75,7 @@ export const GamePage = () => {
   }
   React.useEffect(()=>{
     userScore(diceValue)
-  },[diceValue])
+  },[changeUser])
   
 
   return (
@@ -109,12 +143,12 @@ export const GamePage = () => {
               border="1px solid red"
             >
               {  
-                diceValue==1?<Box className={`rotate-${rotate}`} ><BsDice1 color="red" font-size="48px" /></Box>:
-                diceValue==2?<Box className={`rotate-${rotate}`} ><BsDice2 color="red" font-size="48px" /></Box>:
-                diceValue==3?<Box className={`rotate-${rotate}`} ><BsDice3 color="red" font-size="48px" /></Box>:
-                diceValue==4?<Box className={`rotate-${rotate}`} ><BsDice4 color="red" font-size="48px" /></Box>:
-                diceValue==5?<Box className={`rotate-${rotate}`} ><BsDice5 color="red" font-size="48px" /></Box>:
-                diceValue==6?<Box className={`rotate-${rotate}`} ><BsDice6 color="red" font-size="48px" /></Box>:<Box className={`rotate-${rotate}`} ><BsDice1 color="red" font-size="48px" /></Box>
+                diceValue==1?<Box className={`rotate-${rotate}`} ><BsDice1 color="red" font-size="64px" /></Box>:
+                diceValue==2?<Box className={`rotate-${rotate}`} ><BsDice2 color="red" font-size="64px" /></Box>:
+                diceValue==3?<Box className={`rotate-${rotate}`} ><BsDice3 color="red" font-size="64px" /></Box>:
+                diceValue==4?<Box className={`rotate-${rotate}`} ><BsDice4 color="red" font-size="64px" /></Box>:
+                diceValue==5?<Box className={`rotate-${rotate}`} ><BsDice5 color="red" font-size="64px" /></Box>:
+                diceValue==6?<Box className={`rotate-${rotate}`} ><BsDice6 color="red" font-size="64px" /></Box>:<Box className={`rotate-${rotate}`} ><BsDice1 color="red" font-size="64px" /></Box>
             }
             </Box>
             <Box
@@ -133,9 +167,9 @@ export const GamePage = () => {
             </Box>
           </Flex>
           <Flex justifyContent={"space-around"}>
-            <Button colorScheme='black' isDisabled={changeUser} onClick={diceValueGenerator} variant='outline'>Player 1</Button>
+            <Button colorScheme='black' isDisabled={changeUser || user1==0 || user2==0} onClick={diceValueGenerator} variant='outline'>Player 1</Button>
             <Text></Text>
-            <Button colorScheme='black' isDisabled={!changeUser} onClick={diceValueGenerator} variant='outline'>Player 2</Button>
+            <Button colorScheme='black' isDisabled={!changeUser || user1==0 || user2==0} onClick={diceValueGenerator} variant='outline'>Player 2</Button>
           </Flex>
 
         </Box>
