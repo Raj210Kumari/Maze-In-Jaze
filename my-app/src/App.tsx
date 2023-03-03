@@ -1,7 +1,8 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-import Home from './Page/Home';
+import { GamePage } from './Page/GamePage';
+// import Home from './Page/Home';
 
 function App() {
   return (
@@ -16,8 +17,8 @@ function App() {
           ROLLDICE
         </a>
       </header> */}
-      <Home/>
-
+      {/* <Home/> */}
+      <GamePage/>
     </div>
   );
 }
