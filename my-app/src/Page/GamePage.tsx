@@ -1,5 +1,5 @@
 import React from "react";
-import "../App.css";
+import "./GamePage.css";
 import {
   Box,
   Flex,
@@ -24,10 +24,14 @@ export const GamePage = () => {
   const [user1, setUser1] = React.useState<number>(12);
   const [user2, setUser2] = React.useState<number>(12);
   const [diceValue, setDiceValue] = React.useState<number>(1);
+  const [rotate, setRotate] = React.useState<boolean>(false);
   const diceValueGenerator=()=>{
-    setDiceValue(Math.ceil(Math.random() * 6))
+    setDiceValue(Math.ceil(Math.random() * 6));
+    setRotate(!rotate);
   }
-  console.log('diceValue:', diceValue)
+  console.log('rotate:', rotate)
+  
+
   return (
     <>
       <div>GamePage</div>
@@ -82,6 +86,7 @@ export const GamePage = () => {
               <Image w="60%" m="auto" src={bird} />
             </Box>
             <Box
+              className="diceBox"
               display="flex"
               justifyContent="center"
               alignItems="center"
@@ -89,12 +94,12 @@ export const GamePage = () => {
               w="30%"
               border="1px solid red"
             >{  
-                diceValue==1?<Box className={"App-logo"}><BsDice1 font-size="48px" /></Box>:
-                diceValue==2?<Box className={"App-logo"}><BsDice2 font-size="48px" /></Box>:
-                diceValue==3?<Box className={"App-logo"}><BsDice3 font-size="48px" /></Box>:
-                diceValue==4?<Box className={"App-logo"}><BsDice4 font-size="48px" /></Box>:
-                diceValue==5?<Box className={"App-logo"}><BsDice5 font-size="48px" /></Box>:
-                diceValue==6?<Box className={"App-logo"}><BsDice6 font-size="48px" /></Box>:null
+                diceValue==1?<Box className={`rotate-${rotate}`} ><BsDice1 font-size="48px" /></Box>:
+                diceValue==2?<Box className={`rotate-${rotate}`} ><BsDice2 font-size="48px" /></Box>:
+                diceValue==3?<Box className={`rotate-${rotate}`} ><BsDice3 font-size="48px" /></Box>:
+                diceValue==4?<Box className={`rotate-${rotate}`} ><BsDice4 font-size="48px" /></Box>:
+                diceValue==5?<Box className={`rotate-${rotate}`} ><BsDice5 font-size="48px" /></Box>:
+                diceValue==6?<Box className={`rotate-${rotate}`} ><BsDice6 font-size="48px" /></Box>:null
             }
             </Box>
             <Box
