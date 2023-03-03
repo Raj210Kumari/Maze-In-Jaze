@@ -80,7 +80,7 @@ const Navbar = () => {
                 fontSize="xl"
               >
                 <Text m="2" fontWeight="900">
-                  Name:{name}
+                  Name
                 </Text>
                 <input type="text" placeholder="Enter name here" value={name} onChange={(e)=>setName(e.target.value)}/>
                 <Text m="2" fontWeight="900">
