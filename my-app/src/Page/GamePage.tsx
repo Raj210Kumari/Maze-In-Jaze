@@ -70,9 +70,10 @@ export const GamePage = () => {
               </Tbody>
             </Table>
           </TableContainer>
+          
         </Box>
 {/* ---------------------Playing Area ----------------------------------------- */}
-        <Box border={"1px solid red"} width="60%">
+        <Box  width="60%">
           <Text>Playing Area</Text>
           <Flex justifyContent={"space-around"}>
             <Text>Player 1</Text>
@@ -88,7 +89,8 @@ export const GamePage = () => {
               h="100%"
               w="30%"
               border="1px solid red"
-              bgImg={"https://media.tenor.com/GXYzNczoVAMAAAAC/rain-nature.gif"}
+              // bgImg={"https://media.tenor.com/GXYzNczoVAMAAAAC/rain-nature.gif"}
+              backgroundColor="rgba(0, 0, 0, 0.723)"
             >
               {Array(user1)
                 .fill(0)
@@ -105,20 +107,22 @@ export const GamePage = () => {
               h="100%"
               w="30%"
               border="1px solid red"
-            >{  
-                diceValue==1?<Box className={`rotate-${rotate}`} ><BsDice1 font-size="48px" /></Box>:
-                diceValue==2?<Box className={`rotate-${rotate}`} ><BsDice2 font-size="48px" /></Box>:
-                diceValue==3?<Box className={`rotate-${rotate}`} ><BsDice3 font-size="48px" /></Box>:
-                diceValue==4?<Box className={`rotate-${rotate}`} ><BsDice4 font-size="48px" /></Box>:
-                diceValue==5?<Box className={`rotate-${rotate}`} ><BsDice5 font-size="48px" /></Box>:
-                diceValue==6?<Box className={`rotate-${rotate}`} ><BsDice6 font-size="48px" /></Box>:<BsDice1 font-size="48px" />
+            >
+              {  
+                diceValue==1?<Box className={`rotate-${rotate}`} ><BsDice1 color="red" font-size="48px" /></Box>:
+                diceValue==2?<Box className={`rotate-${rotate}`} ><BsDice2 color="red" font-size="48px" /></Box>:
+                diceValue==3?<Box className={`rotate-${rotate}`} ><BsDice3 color="red" font-size="48px" /></Box>:
+                diceValue==4?<Box className={`rotate-${rotate}`} ><BsDice4 color="red" font-size="48px" /></Box>:
+                diceValue==5?<Box className={`rotate-${rotate}`} ><BsDice5 color="red" font-size="48px" /></Box>:
+                diceValue==6?<Box className={`rotate-${rotate}`} ><BsDice6 color="red" font-size="48px" /></Box>:<Box className={`rotate-${rotate}`} ><BsDice1 color="red" font-size="48px" /></Box>
             }
             </Box>
             <Box
               h="100%"
               w="30%"
               border="1px solid red"
-              bgImg={"https://media.tenor.com/GXYzNczoVAMAAAAC/rain-nature.gif"}
+              // bgImg={"https://media.tenor.com/GXYzNczoVAMAAAAC/rain-nature.gif"}
+              backgroundColor="rgba(0, 0, 0, 0.723)"
             >
               {Array(user2)
                 .fill(0)
