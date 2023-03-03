@@ -23,13 +23,25 @@ import bird from "../Assets/bird.gif";
 export const GamePage = () => {
   const [user1, setUser1] = React.useState<number>(12);
   const [user2, setUser2] = React.useState<number>(12);
-  const [diceValue, setDiceValue] = React.useState<number>(1);
+  const [diceValue, setDiceValue] = React.useState<number>(0);
   const [rotate, setRotate] = React.useState<boolean>(false);
+  const [changeUser, setChangeUser] = React.useState<boolean>(false);
+  const userScore=(val:number):void=>{
+    console.log('changeUser user2:', changeUser)
+    if(!changeUser){
+      setUser2((prev:number)=> prev-val)
+    }else{
+      setUser1((prev:number)=> prev-val)
+    }
+  }
   const diceValueGenerator=()=>{
     setDiceValue(Math.ceil(Math.random() * 6));
     setRotate(!rotate);
+    setChangeUser(!changeUser)
   }
-  console.log('rotate:', rotate)
+  React.useEffect(()=>{
+    userScore(diceValue)
+  },[diceValue])
   
 
   return (
@@ -99,7 +111,7 @@ export const GamePage = () => {
                 diceValue==3?<Box className={`rotate-${rotate}`} ><BsDice3 font-size="48px" /></Box>:
                 diceValue==4?<Box className={`rotate-${rotate}`} ><BsDice4 font-size="48px" /></Box>:
                 diceValue==5?<Box className={`rotate-${rotate}`} ><BsDice5 font-size="48px" /></Box>:
-                diceValue==6?<Box className={`rotate-${rotate}`} ><BsDice6 font-size="48px" /></Box>:null
+                diceValue==6?<Box className={`rotate-${rotate}`} ><BsDice6 font-size="48px" /></Box>:<BsDice1 font-size="48px" />
             }
             </Box>
             <Box
@@ -117,9 +129,9 @@ export const GamePage = () => {
             </Box>
           </Flex>
           <Flex justifyContent={"space-around"}>
-            <Button colorScheme='black' onClick={diceValueGenerator} variant='outline'>Player 1</Button>
+            <Button colorScheme='black' isDisabled={changeUser} onClick={diceValueGenerator} variant='outline'>Player 1</Button>
             <Text></Text>
-            <Button colorScheme='black' onClick={diceValueGenerator} variant='outline'>Player 2</Button>
+            <Button colorScheme='black' isDisabled={!changeUser} onClick={diceValueGenerator} variant='outline'>Player 2</Button>
           </Flex>
 
         </Box>
