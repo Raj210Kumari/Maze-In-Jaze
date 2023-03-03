@@ -1,8 +1,5 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
-import { GamePage } from './Page/GamePage';
-// import Home from './Page/Home';
 
 function App() {
   return (
@@ -17,8 +14,6 @@ function App() {
           ROLLDICE
         </a>
       </header> */}
-      {/* <Home/> */}
-      <GamePage/>
     </div>
   );
 }
