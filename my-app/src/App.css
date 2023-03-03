@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  background-image: url("https://cdn.dribbble.com/users/1162077/screenshots/4397926/patterns-preview2.gif");
 }
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
