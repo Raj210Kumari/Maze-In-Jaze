@@ -1,8 +1,5 @@
 import React from 'react';
 import './App.css';
-import Home from './Page/Home';
-import Navbar from './Page/Navbar';
-
 
 function App() {
   return (
@@ -17,9 +14,6 @@ function App() {
           ROLLDICE
         </a>
       </header> */}
-      <Navbar/>
-      <Home/>
-
     </div>
   );
 }
