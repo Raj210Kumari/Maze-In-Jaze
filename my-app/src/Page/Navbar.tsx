@@ -20,7 +20,7 @@ import style from "./Navbar.module.css";
 import nevbg from "../Assets/nev-removebg-preview.png";
 
 
-const Navbar = () => {
+export const Navbar = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [name, setName] = useState<string>("");
   const [email, setEmail] = useState<string>("");
