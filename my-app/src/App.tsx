@@ -1,9 +1,7 @@
 import React from 'react';
+import MainRoute from './AllRoutes/MainRoute';
 import './App.css';
-import { GamePage } from './Page/GamePage';
-import Home from './Page/Home';
 import {Navbar} from './Page/Navbar';
-
 
 function App() {
 
@@ -15,8 +13,6 @@ function App() {
       {/* {!showGame?
       <Home socket={socket} />
       :
-    } */}
-    <GamePage />
     </div>
   );
 }
