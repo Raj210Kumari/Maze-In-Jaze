@@ -1,9 +1,8 @@
 import React from 'react';
+import MainRoute from './AllRoutes/MainRoute';
 import './App.css';
-import { GamePage } from './Page/GamePage';
-import Home from './Page/Home';
 import {Navbar} from './Page/Navbar';
-import { io, Socket } from "socket.io-client";
+// import { io, Socket } from "socket.io-client";
 
 interface ServerToClientEvents {
   noArg: () => void;
@@ -15,17 +14,18 @@ interface ClientToServerEvents {
   hello: () => void;
 }
 
-const socket: Socket<ServerToClientEvents, ClientToServerEvents> = io();
+// const socket: Socket<ServerToClientEvents, ClientToServerEvents> = io();
 function App() {
   const [showGame, setShowGame] = React.useState<boolean>(false)
   return (
     <div className="App">
       <Navbar/>
-      {!showGame?
+      {/* {!showGame?
       <Home socket={socket} />
       :
       <GamePage/>
-      }
+      } */}
+      <MainRoute/>
     </div>
   );
 }
