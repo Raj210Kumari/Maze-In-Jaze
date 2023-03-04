@@ -1,6 +1,6 @@
 .App {
   text-align: center;
-  /* background-image: url("https://www.teahub.io/photos/full/284-2841422_thumb-image-forest-pixel-art-gif.gif"); */
+  background-image: url("https://www.teahub.io/photos/full/284-2841422_thumb-image-forest-pixel-art-gif.gif");
   background-size: cover;
 }
 @media (prefers-reduced-motion: no-preference) {
