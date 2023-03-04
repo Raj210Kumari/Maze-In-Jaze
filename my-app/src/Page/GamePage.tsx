@@ -151,9 +151,9 @@ export const GamePage = () => {
             </Box>
           </Flex>
           <Flex justifyContent={"space-around"}>
-            <Button backgroundSize="cover" bgImg={btn1} border="none" color="white" fontWeight="700" fontSize="20px" w="20%" h="60px" isDisabled={changeUser} onClick={diceValueGenerator} variant='link'>Player 1</Button>
+            <Button backgroundSize="cover" bgImg={btn1} border="none" color="white" fontWeight="700" fontSize="20px" w="20%" h="60px" isDisabled={changeUser || user1==0 || user2==0} onClick={diceValueGenerator} variant='link'>Player 1</Button>
             <Text></Text>
-            <Button backgroundSize="cover" bgImg={btn1} border="none" color="white" fontWeight="700" fontSize="20px" w="20%" h="60px" isDisabled={!changeUser} onClick={diceValueGenerator} variant='link'>Player 2</Button>
+            <Button backgroundSize="cover" bgImg={btn1} border="none" color="white" fontWeight="700" fontSize="20px" w="20%" h="60px" isDisabled={!changeUser || user1==0 || user2==0} onClick={diceValueGenerator} variant='link'>Player 2</Button>
           </Flex>
 
         </Box>
