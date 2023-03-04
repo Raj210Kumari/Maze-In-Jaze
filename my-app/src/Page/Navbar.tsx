@@ -34,7 +34,7 @@ export const Navbar = () => {
     };
     localStorage.setItem("email",email)
     // console.log(payload)
-    fetch("http://localhost:8080/user/",{
+    fetch("https://shy-pear-caterpillar-tie.cyclic.app/user/",{
       method:"POST",
       body:JSON.stringify(payload),
       headers:{

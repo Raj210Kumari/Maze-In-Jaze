@@ -24,7 +24,7 @@ export const GamePage = () => {
   const [userName, setUserName] = React.useState<string>("user")
   let email = localStorage.getItem("email")
   const getuserData =()=>{
-    fetch(`http://localhost:8080/user/single/${email}`,).then(res=>res.json())
+    fetch(`https://shy-pear-caterpillar-tie.cyclic.app/user/single/${email}`,).then(res=>res.json())
     .then(res=>{
       // console.log(res);
       setUserID(res._id)
@@ -64,7 +64,7 @@ export const GamePage = () => {
     let payload ={
       id:userID
     }
-    fetch("http://localhost:8080/user/wins",{
+    fetch("https://shy-pear-caterpillar-tie.cyclic.app/user/wins",{
         method:"PATCH",
         body:JSON.stringify(payload),
         headers:{
@@ -86,7 +86,7 @@ export const GamePage = () => {
       position: 'top',
       isClosable: true,
     })
-    
+
     nevigate("/")
   }
 
