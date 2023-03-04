@@ -2,9 +2,9 @@ const mongoose = require("mongoose")
 
 const userSchema = mongoose.Schema({
     name: String,
-    userID: String,
     email: String,
-    password: String
+    password: String,
+    numberOfWins:Number
 })
 const UserModel = mongoose.model("user",userSchema)
 
