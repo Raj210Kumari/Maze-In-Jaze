@@ -3,31 +3,3 @@
   background-image: url("https://www.teahub.io/photos/full/284-2841422_thumb-image-forest-pixel-art-gif.gif");
   background-size: cover;
 }
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin 10s linear;
-  }
-}
-
-.App-header {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  color: white;
-}
-
-.App-link {
-  font-size: 30px;
-  color: #00485c;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
