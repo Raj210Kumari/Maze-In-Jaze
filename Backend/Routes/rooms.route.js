@@ -59,6 +59,22 @@ roomRouter.patch("/joinroom",async(req,res)=>{
         res.send({"error":error.message})
     }
 })
+roomRouter.patch("/scorechange",async(req,res)=>{
+    let {} = req.body
+    let ID =roomID
+    try {
+        const ExistingGame = await RoomModel.findOne({roomID:ID})
+        console.log("ExistingGame",ExistingGame)
+        ExistingGame.username2 = username2
+        ExistingGame.userID2 = userID2
+        await ExistingGame.save()
+        console.log("ExistingGame",ExistingGame)
+        res.send({"message": `Game started with ID : ${ID}`, "ID":ID})
+    } catch (error) {
+        console.log("error",error)
+        res.send({"error":error.message})
+    }
+})
 roomRouter.patch("/winner",async(req,res)=>{
     let {roomID,winnerID} = req.body
     let ID =roomID
