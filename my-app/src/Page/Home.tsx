@@ -20,13 +20,39 @@ import {
   TableContainer,
 } from "@chakra-ui/react";
 
+interface User {
+  name: String,
+  email: String,
+  password: String,
+  numberOfWins:String
+}
+
 const Home = () => {
+  
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const [data, setdata] = React.useState<User[]>([])
+  
+  const showLeaderboard =()=>{
+    fetch(`http://localhost:8080/user/leader`,).then(res=>res.json())
+    .then((res:User[])=>{
+      // console.log(res);
+      // const ans = res.map((user:any)=>console.log(user.name))
+      setdata(res)
+    })
+    .catch(err=>console.log(err))
+  }
+
+  React.useEffect(()=>{
+    showLeaderboard()
+  },[])
+  console.log('data:', data)
+
+
   return (
     <div className={style.mainContainerDiv}>
       <div className={style.userDetailDiv}>
-        <input type="text" placeholder="Enter Your Name" />
-        <input type="text" placeholder="Room ID" />
+        {/* <input type="text" placeholder="Enter Your Name" />
+        <input type="text" placeholder="Room ID" /> */}
         <button className={style.playButton}>Play</button>
         <button onClick={onOpen} className={style.leaderboardButton}>
           Show Leaderboard
@@ -42,23 +68,17 @@ const Home = () => {
                 <Table variant="simple">
                   <Thead>
                     <Tr>
-                      <Th>Name</Th>
-                      <Th isNumeric>Score</Th>
+                      <Th>Players</Th>
+                      <Th>Score</Th>
                     </Tr>
                   </Thead>
                   <Tbody>
+                  {data.map(item => (
                     <Tr>
-                      <Td>inches</Td>
-                      <Td isNumeric>25.4</Td>
+                      <Td>{item.name}</Td>
+                      <Td>{item.numberOfWins}</Td>
                     </Tr>
-                    <Tr>
-                      <Td>feet</Td>
-                      <Td isNumeric>30.48</Td>
-                    </Tr>
-                    <Tr>
-                      <Td>yards</Td>
-                      <Td isNumeric>0.91444</Td>
-                    </Tr>
+                  ))}
                   </Tbody>
                 </Table>
               </TableContainer>

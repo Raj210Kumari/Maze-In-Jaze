@@ -15,8 +15,10 @@ import {
   ModalBody,
   ModalCloseButton,
   Text,
+  Input,
 } from "@chakra-ui/react";
 import nevbg from "../Assets/nev-removebg-preview.png";
+import { Link } from "react-router-dom";
 
 export const Navbar = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -30,6 +32,7 @@ export const Navbar = () => {
       email,
       password,
     };
+    localStorage.setItem("email",email)
     // console.log(payload)
     fetch("http://localhost:8080/user/",{
       method:"POST",
@@ -67,7 +70,7 @@ export const Navbar = () => {
             fontSize="26px"
             color="#000"
           >
-            Log in
+            Login
           </Button>
           <Modal isOpen={isOpen} onClose={onClose}>
             <ModalOverlay />
@@ -86,46 +89,43 @@ export const Navbar = () => {
                 bg="#ffffff67"
                 textAlign="center"
               >
-                LogIn
+                Login
               </ModalHeader>
               <ModalCloseButton bg="#ffffff67" />
-              <ModalBody gap="2" bg="#ffffff67" width="100%" fontSize="xl">
+              <ModalBody gap="2" bg="#ffffff67" pb="30px" width="100%" fontSize="xl">
                 <Text m="2" fontWeight="900">
                   Name
                 </Text>
-                <input
-                  type="text"
-                  placeholder="Enter name here"
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                  style={{padding:"15px",borderRadius:"5px",width:"100%"}}
-                />
+                <Input 
+                borderColor="#000" 
+                borderRadius="4px" 
+                color="#000" fontSize="16px" fontWeight="700" _placeholder={{ color: 'inherit' }} focusBorderColor="#000" placeholder="Enter name here" value={name} onChange={(e) => setName(e.target.value)}/>
                 <Text m="2" fontWeight="900">
                   Email
                 </Text>
-                <input
-                  type="text"
-                  placeholder="Enter Email here"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  style={{padding:"15px",borderRadius:"5px",width:"100%"}}
-                />
+                <Input 
+                borderColor="#000" 
+                borderRadius="4px" 
+                color="#000" fontSize="16px" fontWeight="700" _placeholder={{ color: 'inherit' }} focusBorderColor="#000" placeholder="Enter Email here" value={email} onChange={(e) => setEmail(e.target.value)}/>
                 <Text m="2" fontWeight="900">
                   Password
                 </Text>
-                <input
-                  type="text"
-                  placeholder="Enter Password here"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  style={{padding:"15px",borderRadius:"5px",width:"100%",marginBottom: "20px"}}
+                <Input 
+                borderColor="#000" 
+                borderRadius="4px" 
+                color="#000" fontSize="16px" fontWeight="700" _placeholder={{ color: 'inherit' }} focusBorderColor="#000" 
+                placeholder="Enter Password here"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
                 />
               </ModalBody>
 
               <ModalFooter paddingBottom="0px">
-                <Button colorScheme="blue" mr={3} onClick={handleSubmit}>
-                  Submit
-                </Button>
+                <Link to="/game" onClick={handleSubmit} >
+                  <Button colorScheme="blue" mr={3} onClick={onClose}>
+                    Submit
+                  </Button>
+                </Link>
               </ModalFooter>
             </ModalContent>
           </Modal>
