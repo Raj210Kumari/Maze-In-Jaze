@@ -33,14 +33,17 @@ export const Navbar = () => {
         password
     }
     // console.log(payload)
-    fetch("apilink",{
+    fetch("http://localhost:8080/user/",{
         method:"POST",
         body:JSON.stringify(payload),
         headers:{
             "Content-type":"application/json"
         }
     }).then(res=>res.json())
-    .then(res=>console.log(res))
+    .then(res=>{
+      console.log(res);
+      localStorage.setItem("token",res.token)
+    })
     .catch(err=>console.log(err))
 }
 

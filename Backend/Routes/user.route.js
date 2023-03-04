@@ -1,49 +1,50 @@
 const express = require("express");
 const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken')
-const { UserModel } = require("../models/users.model");
+const jwt = require('jsonwebtoken');
+const { UserModel } = require("../Model/UserModel");
 
 const users = express.Router()
 
-users.post("/register", async(req,res)=>{
+
+users.get("/",async(req,res)=>{
+    try {
+        const user = await UserModel.findOne({email})
+        res.send(user)
+    } catch (error) {
+        console.log("error",error)
+        res.send({"error":error.message})
+    }
+})
+
+users.post("/", async(req,res)=>{
     const {name,email,password,} = req.body
-    let alreadyExist = await UserModel.find({email})
+    let alreadyExist = await UserModel.findOne({email})
+
     if(alreadyExist.length>0){
-        res.send("User already exist, please login")
-    }else{
+        let token = jwt.sign({userid:alreadyExist[0]._id}, 'evaluation');
+        bcrypt.compare(password, alreadyExist[0].password, function(err, result) {
+            if(result){
+                res.send({"msg":"Login Success", "token": token})
+            }else{
+                console.log(`{msg: , err:${err}}`)
+            }
+        });
+    }
+    else{
         try{
+            let token = jwt.sign({userid:email}, 'evaluation');
             bcrypt.hash(password, 5, async(err, hash)=>{
                 if(err){
                     res.send({"msg":"Error occured" , "err":err.message})
                 }else{
                     let user = new UserModel({name, email, password:hash})
                     await user.save()
-                    res.send({"msg":"New User Registered"})
+                    res.send({"msg":"New User Registered", "token": token})
                 }
             });
         }catch(err){
             console.log(`{msg:Error occured while Registering , err:${err.message}}`)
         }
-    }
-})
-users.post("/login", async(req,res)=>{
-    const {email,password} = req.body
-    try{
-        const user = await UserModel.find({email})
-        let token = jwt.sign({userid:user[0]._id}, 'evaluation');
-        if(user.length>0){
-            bcrypt.compare(password, user[0].password, function(err, result) {
-                if(result){
-                    res.send({"msg":"Login Success","token":token})
-                }else{
-                    console.log(`{msg: , err:${err}}`)
-                }
-            });
-        }else{
-            res.send({"msg":"Wrong Credentials"})
-        }
-    }catch(err){
-        console.log(`{msg:Error occured while Login , err:${err.message}}`)
     }
 })
 
