@@ -17,8 +17,10 @@ import {
   Text,
 } from "@chakra-ui/react";
 import style from "./Navbar.module.css";
+import nevbg from "../Assets/nev-removebg-preview.png";
 
-const Navbar = () => {
+
+export const Navbar = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [name, setName] = useState<string>("");
   const [email, setEmail] = useState<string>("");
@@ -45,8 +47,8 @@ const Navbar = () => {
   return (
     <div>
       <Flex minWidth="max-content" alignItems="center" gap="2" bg="#ffffffb2">
-        <Box p="4">
-          <Heading size="xl" color="black" fontWeight={900}>
+        <Box p="2">
+          <Heading size="20px" color="black" fontWeight={900}>
             Maze-In-Jaze
           </Heading>
         </Box>
@@ -54,8 +56,12 @@ const Navbar = () => {
         <ButtonGroup gap="2" mr="20">
           <Button
             className={style.loginButton}
-            colorScheme="#000"
             onClick={onOpen}
+            bgImg={nevbg}
+            variant="unstyled"
+            w="100px"
+            fontWeight="900"
+            backgroundSize="cover"
           >
             Log in
           </Button>
@@ -105,5 +111,3 @@ const Navbar = () => {
     </div>
   );
 };
-
-export default Navbar;
