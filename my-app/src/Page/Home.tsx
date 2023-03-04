@@ -33,7 +33,7 @@ const Home = () => {
   const [data, setdata] = React.useState<User[]>([])
   
   const showLeaderboard =()=>{
-    fetch(`http://localhost:8080/user/leader`,).then(res=>res.json())
+    fetch(`https://shy-pear-caterpillar-tie.cyclic.app/user/leader`,).then(res=>res.json())
     .then((res:User[])=>{
       // console.log(res);
       // const ans = res.map((user:any)=>console.log(user.name))
